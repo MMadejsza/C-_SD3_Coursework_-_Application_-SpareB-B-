@@ -555,7 +555,7 @@ namespace Sprint_3_Maciej_Madejsza
                 case "Suspend":
                     // Further to choose will be only properties which are not suspended and and belong to this particular personToListBy performing an action
                     actionTargetDroplist.Items.Clear();
-                    foreach (PropBase prop in database.Search("properties", "NOTSUSPENDED"))
+                    foreach (PropBase prop in database.Search("properties", "NOT SUSPENDED"))
                     {
                         if (prop.GetOwner().GetID() == person.GetID())
                         {

@@ -260,7 +260,7 @@ class Database
                         //return searchOutput(queryToSearch, "\nSearched BOOKED properties:");
 
                         return results;
-                    case "NOTSUSPENDED":
+                    case "NOT SUSPENDED":
 
                         foreach (PropBase prop in this.allProperties)
                         {
