@@ -1,0 +1,140 @@
+﻿<Window x:Class="Sprint_3_Maciej_Madejsza.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sprint_3_Maciej_Madejsza"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="860" Width="840">
+    <Grid Height="825">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="285.96"/>
+            <RowDefinition Height="auto" MinHeight="284"/>
+            <RowDefinition Height="auto" MinHeight="350"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Choose person to add:" HorizontalContentAlignment="Center" Margin="38,56,210,174" MinWidth="130" FontWeight="Bold" />
+
+        <ComboBox x:Name="addingPerson" SelectedIndex="0" SelectionChanged="AddingPerson_SelectionChanged" SelectedValuePath="Content" Margin="220,62,80,0" Height="20" VerticalAlignment="Top">
+            <ComboBoxItem  Content="Landlord"></ComboBoxItem>
+            <ComboBoxItem Content="Tenant"></ComboBoxItem>
+        </ComboBox>
+        <StackPanel Margin="49,88,221,123">
+            <Label Content="Forename:" Target="{Binding ElementName=PersonFName}" HorizontalContentAlignment = "Center" />
+            <TextBox x:Name="PersonFName"/>
+        </StackPanel>
+        <StackPanel Margin="49,133,221,79">
+            <Label Content="Surename:" Target="{Binding ElementName=PersonSName}" HorizontalContentAlignment = "Center" />
+            <TextBox x:Name="PersonSName"/>
+        </StackPanel>
+        <StackPanel Margin="49,177,221,34" >
+            <Label Content="Email:" Target="{Binding ElementName=PersonEmail}" HorizontalContentAlignment = "Center" />
+            <TextBox x:Name="PersonEmail"/>
+        </StackPanel>
+        <CheckBox x:Name="PersonFlag" Margin="226,133,0,107" 
+            Content="Flagged" Width="76" HorizontalAlignment="Left"  />
+        <CheckBox x:Name="PersonMembership" Margin="226,177,85,63" 
+     Content="Premium"/>
+        <Button Content="Add Person" 
+               Click="Add_Person_Button_Click"  HorizontalAlignment="Center" Height="21" VerticalAlignment="Top" Width="114" Margin="0,255,0,0"/>
+
+        <Label Content="Action Log:" Target="{Binding ElementName=additionLog}" HorizontalContentAlignment="Center"  Grid.Row="2" Grid.ColumnSpan="2" Margin="0,8,0,372" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="16" BorderBrush="Black" BorderThickness="0,0,0,1" />
+        <ListBox x:Name="actionLog" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="#FFE1ECC4" Margin="10,42,10,177" Grid.Row="2" Grid.ColumnSpan="2" Height="195"/>
+
+        <Label Content="Choose property type:" Target="{Binding ElementName=addingProperty}" HorizontalContentAlignment="Center" Margin="49,56,0,0" Grid.Column="1" Height="34" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Width="136" />
+        <ComboBox x:Name="addingProperty"  SelectionChanged="AddingProperty_SelectionChanged" DropDownOpened="AddingProperty_DropDownOpened" SelectedValuePath="Content" Margin="220,63,80,0" Grid.Column="1" Height="20" VerticalAlignment="Top">
+            <ComboBoxItem  Content="Room"></ComboBoxItem>
+            <ComboBoxItem Content="Flat"></ComboBoxItem>
+            <ComboBoxItem Content="House"></ComboBoxItem>
+        </ComboBox>
+
+        <StackPanel Margin="49,81,221,123" Grid.Column="1" >
+            <Label Content="Landlord:" Target="{Binding ElementName=assignLandlord}" HorizontalContentAlignment = "Center" Height="25" />
+            <ComboBox x:Name="assignLandlordDroplist" SelectionChanged="AssignLandlord_SelectionChanged" Height="20" Grid.Row="1"/>
+        </StackPanel>
+        <StackPanel Margin="220,81,49,71" Grid.Column="1" >
+            <Label Content="Price:" Target="{Binding ElementName=price}" HorizontalContentAlignment = "Center" Height="26" VerticalContentAlignment="Center" Width="128" />
+            <TextBox x:Name="price"/>
+        </StackPanel>
+        <StackPanel Margin="220,125,49,84" Grid.Column="1" >
+            <Label Content="Luxury lvl:" Target="{Binding ElementName=lux}" HorizontalContentAlignment = "Center" Height="26" VerticalContentAlignment="Center" Width="128" />
+            <ComboBox x:Name="lux" SelectedIndex="0" SelectionChanged="Lux_SelectionChanged" SelectedValuePath="Content"  Height="20" Grid.Row="1">
+                <ComboBoxItem  Content="1"></ComboBoxItem>
+                <ComboBoxItem Content="2"></ComboBoxItem>
+                <ComboBoxItem Content="3"></ComboBoxItem>
+                <ComboBoxItem Content="4"></ComboBoxItem>
+                <ComboBoxItem Content="5"></ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Margin="49,125,221,76" Grid.Column="1" >
+            <Label Content="Rooms:" Target="{Binding ElementName=rooms}" HorizontalContentAlignment = "Center" Height="26" VerticalContentAlignment="Center" Width="128" />
+            <ComboBox x:Name="rooms" SelectionChanged="AssignRooms_SelectionChanged"  Height="20" Grid.Row="1">
+            </ComboBox>
+        </StackPanel>
+        <CheckBox x:Name="selCheckIn" Margin="49,182,0,51" 
+    Content="Self check-in" Width="95" HorizontalAlignment="Left" Grid.Column="1" />
+        <CheckBox x:Name="disableFriendly" Margin="49,204,0,31" 
+            Content="Disabled friendly" Width="114" HorizontalAlignment="Left" Grid.Column="1" />
+        <CheckBox x:Name="smokeAlarm" Margin="49,224,0,11" 
+            Content="Smoke alarm" Width="114" HorizontalAlignment="Left" Grid.Column="1" />
+        <CheckBox x:Name="separateEntrance" Margin="220,182,0,51" 
+            Content="Separate Entrance" Width="149" HorizontalAlignment="Left" Grid.Column="1" />
+        <CheckBox x:Name="garden" Margin="220,204,0,31" 
+            Content="Garden" Width="149" HorizontalAlignment="Left" Grid.Column="1" />
+        <CheckBox x:Name="privateKey" Margin="220,224,0,11" 
+            Content="Private key" Width="149" HorizontalAlignment="Left" Grid.Column="1" />
+        <Button Content="Add Property" 
+       Click="Add_Property_Button_Click"  HorizontalAlignment="Center" Height="21" VerticalAlignment="Top" Width="114" Grid.Column="1" Margin="0,255,0,0"/>
+
+        <Label Content="Perform action by particular person:"  HorizontalContentAlignment="Center" Margin="78,49,78,201" Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center" FontWeight="Bold" Height="34" />
+        <StackPanel Margin="49,80,221,121" Grid.Row="1" Grid.Column="0" >
+            <Label Content="Person type:" Target="{Binding ElementName=personTypeActionDropList}" HorizontalContentAlignment = "Center" Height="27" />
+            <ComboBox x:Name="personTypeActionDropList" SelectionChanged="PersonTypeActionDropList_SelectionChanged" DropDownOpened="PersonTypeActionDropList_DropDownOpened" SelectedValuePath="Content"  Height="20">
+                <ComboBoxItem Content="Landlords"/>
+                <ComboBoxItem Content="Tenants"/>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Margin="226,80,44,127" Grid.Row="1" Grid.Column="0" >
+            <Label Content="Person:" Target="{Binding ElementName=personActionDropList}" HorizontalContentAlignment = "Center" Height="27" />
+            <ComboBox x:Name="personForActionDroplist" SelectionChanged="PersonForActionDropList_SelectionChanged" Height="20" SelectedValuePath="" />
+        </StackPanel>
+        <StackPanel Margin="49,132,221,69" Grid.Row="1" Grid.Column="0" >
+            <Label Content="Action:" Target="{Binding ElementName=actionDropList}" HorizontalContentAlignment = "Center" Height="27" />
+            <ComboBox x:Name="actionsDroplist" SelectionChanged="ActionDropList_SelectionChanged" Height="20">
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Margin="226,132,44,65" Grid.Row="1" Grid.Column="0" >
+            <Label Content="Target:" Target="{Binding ElementName=actionDropList}" HorizontalContentAlignment = "Center" Height="27" />
+            <ComboBox x:Name="actionTargetDroplist" SelectionChanged="ActionTargetDropList_SelectionChanged" Height="20"/>
+        </StackPanel>
+        <Button Content="Perform" Click="ActionButton_Click"  HorizontalAlignment="Center" Height="21" Margin="0,253,0,0" VerticalAlignment="Top" Width="114" Grid.Row="1"/>
+
+        <Label Content="List from database:"  HorizontalContentAlignment="Center" Margin="135,49,135,201" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" FontWeight="Bold" Height="34" />
+        <StackPanel Margin="136,74,134,127" Grid.Row="1" Grid.Column="1" >
+            <Label Content="Entity:" Target="{Binding ElementName=entityDropList}" HorizontalContentAlignment = "Center" Height="25" />
+            <ComboBox x:Name="entityDropList" SelectionChanged="EntityDropList_SelectionChanged" DropDownOpened="EntityDropList_DropDownOpened" SelectedValuePath="Content"  Height="20">
+                <ComboBoxItem  Content="Properties"/>
+                <ComboBoxItem Content="Landlords"/>
+                <ComboBoxItem Content="Tenants"/>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Margin="136,124,134,77" Grid.Row="1" Grid.Column="1" >
+            <Label Content="Feature:" Target="{Binding ElementName=featureDropList}" HorizontalContentAlignment = "Center" Height="25" />
+            <ComboBox x:Name="featureDropList" SelectionChanged="FeatureDropList_SelectionChanged" Height="20" SelectedValuePath="" ></ComboBox>
+        </StackPanel>
+        <StackPanel Margin="136,174,134,65" Grid.Row="1" Grid.Column="1" >
+            <Label Content="Person:" Target="{Binding ElementName=personDropList}" HorizontalContentAlignment = "Center" Height="25" />
+            <ComboBox x:Name="personDropList" SelectionChanged="PersonDropList_SelectionChanged" DropDownOpened="PersonDropList_DropDownOpened" Height="20">
+
+            </ComboBox>
+        </StackPanel>
+        <Button Content="List" Click="ListButton_Click"  HorizontalAlignment="Center" Height="21" Margin="0,253,0,0" VerticalAlignment="Top" Width="114" Grid.Column="1" Grid.Row="1"/>
+        <Label Content="Functions panel:" Target="{Binding ElementName=additionLog}" HorizontalContentAlignment="Center"  Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,240" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="16" Height="34" BorderBrush="Black" BorderThickness="0,0,0,1" />
+        <Label Content="Entities input panel:" Target="{Binding ElementName=additionLog}" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Margin="0,10,0,242" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="16" Height="34" BorderBrush="Black" BorderThickness="0,0,0,1" />
+    </Grid>
+</Window>
